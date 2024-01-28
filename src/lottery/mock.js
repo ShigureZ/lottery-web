@@ -38,7 +38,7 @@ const user = test.sort(randomsort)
 /**
  * 卡片公司名称标识
  */
-const COMPANY = "Github";
+const COMPANY = "";
 /**
  * 奖品设置
  * type: 唯一标识，0是默认特别奖的占位符，其它奖品不可使用
@@ -62,7 +62,7 @@ const prizes = [
     type: 1,
     count: 1,
     text: "一等奖 ",
-    title: "价值5999元",
+    title: "",
     img: "./img/huawei.png",
     enter: "1st-lottery",//抽奖进行时音乐
     awards: "1st-BJ-BGM",//颁奖音乐
@@ -74,7 +74,7 @@ const prizes = [
     type: 2,
     count: 2,
     text: "二等奖 ",
-    title: "价值3799元",
+    title: "",
     img: "./img/mbp.jpg",
     enter: "other-lottery",//抽奖进行时音乐
     awards: "other-BJ-BGM",//颁奖音乐
@@ -85,7 +85,7 @@ const prizes = [
     type: 3,
     count: 5,
     text: "三等奖  ",
-    title: "价值1200元",
+    title: "",
     img: "./img/ipad.jpg",
     enter: "other-lottery",//抽奖进行时音乐
     awards: "other-BJ-BGM",//颁奖音乐
@@ -94,14 +94,14 @@ const prizes = [
   },
   {
     type: 4,
-    count: 10,
+    count: 2,
     text: "四等奖",
-    title: "价值300-600元不等",
+    title: "",
     img: "./img/edifier.jpg",
     enter: "other-lottery",//抽奖进行时音乐
     awards: "other-BJ-BGM",//颁奖音乐
     ROTATE_TIME: 10000,
-    circle: 8 * 1
+    circle: 8 * 3
   }
 
 ];
@@ -145,5 +145,5 @@ const height = window.innerWidth * .75 * .75
 /**
  * 一次抽取的奖品个数与prizes对应
  */
-const EACH_COUNT = [1, 1, 1, 5, 5];
+const EACH_COUNT = [1, 1, 1, 1, 1];
 export default { EACH_COUNT, prizes, COMPANY, user, luckyData, leftUsers, awardList, excludeUser, atmosphereGroupCard, background, setSecret, width, height, bgVideo }
