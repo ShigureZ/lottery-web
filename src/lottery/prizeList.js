@@ -156,7 +156,8 @@ function setPrizes(pri) {
 }
 
 function showPrizeList(currentPrizeIndex) {
-  let currentPrize = prizes[currentPrizeIndex];
+  let currentPrize = prizes[currentPrizeIndex]
+  debugger
   if (currentPrize.type === defaultType) {
     currentPrize.count === "不限制";
   }
@@ -167,27 +168,23 @@ function showPrizeList(currentPrizeIndex) {
     if (item.type === defaultType) {
       return true;
     }
-    htmlCode += `<li id="prize-item-${item.type}" class="prize-item ${
-      item.type == currentPrize.type ? "shine" : ""
-    }">
+    htmlCode += `<li id="prize-item-${item.type}" class="prize-item ${item.type == currentPrize.type ? "shine" : ""
+      }">
                         <span></span><span></span><span></span><span></span>
                         <div class="prize-img">
                             <img src="${item.img}" alt="${item.title}">
                         </div>
                         <div class="prize-text">
-                            <div class="prize-title">${item.text} ${
-      item.title
-    }</div>
+                            <div class="prize-title">${item.text} ${item.title
+      }</div>
                             <div class="prize-count">
                                 <div class="progress">
-                                    <div id="prize-bar-${
-                                      item.type
-                                    }" class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 100%;">
+                                    <div id="prize-bar-${item.type
+      }" class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 100%;">
                                     </div>
                                 </div>
-                                <div id="prize-count-${
-                                  item.type
-                                }" class="prize-count-left">
+                                <div id="prize-count-${item.type
+      }" class="prize-count-left">
                                     ${item.count + "/" + item.count}
                                 </div>
                             </div>

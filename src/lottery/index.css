@@ -505,20 +505,21 @@ video {
 .prize-mess {
   width:calc(20vw - 6vh);
   position: fixed;
-  top: 20.2vh;
-  right: 0.2vh;
+  top: 0vh;
+  left: 5vh;
   color: #fff;
-  line-height: 5vh;
+  /* line-height: 5vh; */
   font-size: 1.6vh;
   margin: 2.4vh 0;
 }
 
 .prize-shine {
-  font-size: 2.5vh;
+  font-size: 36px;
   font-weight: bold;
   color: #f9c05e;
   vertical-align: middle;
   padding: 0 6px;
+  letter-spacing: 5px;
 }
 
 .qipao-container {

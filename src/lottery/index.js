@@ -28,6 +28,7 @@ let TOTAL_CARDS,
   },
   prizes,
   EACH_COUNT,
+  PRICE_DIS,
   ROW_COUNT = 7,
   COLUMN_COUNT = 17,
   COMPANY,
@@ -68,57 +69,6 @@ initAll();
  * 初始化所有DOM
  */
 function initAll() {
-
-
-  // window.AJAX({
-  //   url: "/getTempData",
-  //   success(data) {
-  //     // 获取基础数据
-  //     prizes = data.cfgData.prizes;//奖项
-  //     EACH_COUNT = data.cfgData.EACH_COUNT;//抽奖公式["1","2"] 一等奖1,二等奖3 
-  //     COMPANY = data.cfgData.COMPANY;//公司名
-  //     HIGHLIGHT_CELL = createHighlight();
-  //     basicData.prizes = prizes;//基础奖项配置
-  //     setPrizes(prizes);
-
-  //     TOTAL_CARDS = ROW_COUNT * COLUMN_COUNT;
-
-  //     // 读取当前已设置的抽奖结果
-  //     basicData.leftUsers = data.leftUsers;//左边用户
-  //     basicData.luckyUsers = data.luckyData;//已抽奖用户
-
-  //     let prizeIndex = basicData.prizes.length - 1;
-  //     for (; prizeIndex > -1; prizeIndex--) {
-  //       if (
-  //         data.luckyData[prizeIndex] &&
-  //         data.luckyData[prizeIndex].length >=
-  //           basicData.prizes[prizeIndex].count
-  //       ) {
-  //         continue;
-  //       }
-  //       currentPrizeIndex = prizeIndex;
-  //       currentPrize = basicData.prizes[currentPrizeIndex];
-  //       break;
-  //     }
-
-  //     showPrizeList(currentPrizeIndex);
-  //     let curLucks = basicData.luckyUsers[currentPrize.type];
-  //     setPrizeData(currentPrizeIndex, curLucks ? curLucks.length : 0, true);
-  //   }
-  // });
-
-  // window.AJAX({
-  //   url: "/getUsers",
-  //   success(data) {
-  //     console.log(data);
-  //     // basicData.users = data;
-
-  //     // initCards();
-  //     // // startMaoPao();
-  //     // animate();
-  //     // shineCard();
-  //   }
-  // });
   initStyle()
   startMock()
 }
@@ -133,6 +83,7 @@ function startMock() {
 
   prizes = mockData.prizes;//奖项
   EACH_COUNT = mockData.EACH_COUNT;//抽奖公式["1","2"] 一等奖1,二等奖3 
+  PRICE_DIS = mockData.PRICE_DIS // 奖品分布['工会','网金','科技']
   COMPANY = mockData.COMPANY;//公司名
   HIGHLIGHT_CELL = createHighlight();
   basicData.prizes = prizes;//基础奖项配置
@@ -268,101 +219,6 @@ function setLotteryStatus(status = false) {
 /**
  * 事件绑定
  */
-// function bindEvent() {
-//   document.querySelector("#menu").addEventListener("click", function (e) {
-//     e.stopPropagation();
-//     // 如果正在抽奖，则禁止一切操作
-//     if (isLotting) {
-//       addQipao("抽慢一点点～～");
-//       return false;
-//     }
-
-//     let target = e.target.id;
-//     switch (target) {
-//       // 显示数字墙
-//       case "welcome":
-//         switchScreen("enter");
-//         rotate = false;
-//         break;
-//       // 进入抽奖
-//       case "enter":
-//         removeHighlight();
-//         addQipao(`马上抽取[${currentPrize.title}],不要走开。`);
-//         // rotate = !rotate;
-//         rotate = true;
-//         switchScreen("lottery");
-//         break;
-//       // 重置
-//       case "reset":
-//         let doREset = window.confirm(
-//           "是否确认重置数据，重置后，当前已抽的奖项全部清空？"
-//         );
-//         if (!doREset) {
-//           return;
-//         }
-//         addQipao("重置所有数据，重新抽奖");
-//         addHighlight();
-//         resetCard();
-//         // 重置所有数据
-//         currentLuckys = [];
-//         basicData.leftUsers = Object.assign([], basicData.users);
-//         basicData.luckyUsers = {};
-//         currentPrizeIndex = basicData.prizes.length - 1;
-//         currentPrize = basicData.prizes[currentPrizeIndex];
-
-//         resetPrize(currentPrizeIndex);
-//         reset();
-//         switchScreen("enter");
-//         break;
-//       // 抽奖
-//       case "lottery":
-//         //更新状态
-//         setLotteryStatus(true);
-//         // 每次抽奖前先保存上一次的抽奖数据
-//         saveData();
-//         //更新剩余抽奖数目的数据显示
-//         changePrize();
-//         resetCard().then(res => {
-//           // 抽奖
-//           lottery();
-//         });
-//         addQipao(`正在抽取[${currentPrize.title}],调整好姿势`);
-//         break;
-//       // 重新抽奖
-//       case "reLottery":
-//         if (currentLuckys.length === 0) {
-//           addQipao(`当前还没有抽奖，无法重新抽取喔~~`);
-//           return;
-//         }
-//         setErrorData(currentLuckys);
-//         addQipao(`重新抽取[${currentPrize.title}],做好准备`);
-//         setLotteryStatus(true);
-//         // 重新抽奖则直接进行抽取，不对上一次的抽奖数据进行保存
-//         // 抽奖
-//         resetCard().then(res => {
-//           // 抽奖
-//           lottery();
-//         });
-//         break;
-//       // 导出抽奖结果
-//       case "save":
-//         saveData().then(res => {
-//           resetCard().then(res => {
-//             // 将之前的记录置空
-//             currentLuckys = [];
-//           });
-//           exportData();
-//           addQipao(`数据已保存到EXCEL中。`);
-//         });
-//         break;
-//     }
-//   });
-
-//   window.addEventListener("resize", onWindowResize, false);
-// }
-/**
- * 事件绑定
- */
 
 function bindEvent() {
   document.querySelector("#menu").addEventListener("click", function (e) {
@@ -472,7 +328,7 @@ function bindEvent() {
           // 抽奖
           lottery();
         })
-        addQipao(`正在抽取[${currentPrize.title}],调整好姿势`);
+        addQipao(`正在抽取[${currentPrize.text}],调整好姿势`);
         break;
       // 重新抽奖
       case "reLottery":
@@ -481,7 +337,7 @@ function bindEvent() {
           return;
         }
         // setErrorData(currentLuckys);
-        addQipao(`重新抽取[${currentPrize.title}],做好准备`);
+        addQipao(`重新抽取[${currentPrize.text}],做好准备`);
         setLotteryStatus(true);
         // 重新抽奖则直接进行抽取，不对上一次的抽奖数据进行保存
         // 抽奖
@@ -689,7 +545,41 @@ function selectCard(duration = 600) {
     locates = [];
 
   // 计算位置信息, 大于5个分两排显示
-  if (currentLuckys.length > 5) {
+  if (currentLuckys.length > 10) {
+    // 大于10个卡片时的布局，你可以根据需要调整
+    let yPosition = [-180, 0, 180],
+      l = selectedCardIndex.length,
+      mid1 = Math.floor(l / 3),
+      mid2 = 2 * mid1;
+    tag = -(mid1 - 1) / 2;
+
+    for (let i = 0; i < mid1; i++) {
+      locates.push({
+        x: tag * width * Resolution,
+        y: yPosition[0] * Resolution
+      });
+      tag++;
+    }
+    let xOffset = 350;
+
+    tag = -(mid2 - 1) / 2;
+    for (let i = mid1; i < mid2; i++) {
+      locates.push({
+        x: (tag * width + xOffset) * Resolution,
+        y: yPosition[1] * Resolution
+      });
+      tag++;
+    }
+
+    tag = -(l - mid2 - 1) / 2;
+    for (let i = mid2; i < l; i++) {
+      locates.push({
+        x: tag * width * Resolution,
+        y: yPosition[2] * Resolution
+      });
+      tag++;
+    }
+  } else if (currentLuckys.length > 5 && currentLuckys.length <= 10) {
     let yPosition = [-87, 87],
       l = selectedCardIndex.length,
       mid = Math.ceil(l / 2);
@@ -824,24 +714,84 @@ function resetCard(duration = 500) {
 function lottery() {
 
   rotateBall().then(() => {
+    /**
+     * Fisher-Yates算法随机抽选人员
+     * @param {array} array 抽选人员数组
+     * @param {number} numberOfElements 抽取数量
+     * @returns 
+     */
+    const _getRandomAndRemoveElements = (array, numberOfElements) => {
+      if (array.length < numberOfElements) {
+        return [];
+      }
+
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+
+      const removedElements = array.splice(0, numberOfElements);
+
+      return removedElements;
+    }
+
+
     // 将之前的记录置空
     currentLuckys = [];
     selectedCardIndex = [];
-    // 当前同时抽取的数目,当前奖品抽完还可以继续抽，但是不记录数据
-    let perCount = EACH_COUNT[currentPrizeIndex],
-      luckyData = basicData.luckyUsers[currentPrize.type],
-      leftCount = basicData.leftUsers.length,
-      leftPrizeCount = currentPrize.count - (luckyData ? luckyData.length : 0);
+
+    debugger
+    // 根据奖项获取本次各部门抽奖数量
+    let [ghPerCount, wjPerCount, kjPerCount] = PRICE_DIS[currentPrizeIndex]
+    // 本次抽奖数量合计
+    const perCount = ghPerCount + wjPerCount + kjPerCount;
+    let luckyData = basicData.luckyUsers[currentPrize.type]
+    let leftCount = basicData.leftUsers.length
+    let leftPrizeCount = currentPrize.count - (luckyData ? luckyData.length : 0);
     const cloneLeftUsers = JSON.parse(JSON.stringify(basicData.leftUsers))
     if (leftCount === 0) {
       addQipao("人员已抽完，现在重新设置所有人员可以进行二次抽奖！");
       basicData.leftUsers = basicData.users;
       leftCount = basicData.leftUsers.length;
     }
-    currentLuckys = lotteryRan(leftCount, perCount).map(index => {
-      return cloneLeftUsers[index]
+
+    let kjLeft = [] // 科技剩余人数
+    let ghLeft = [] // 工会剩余人数
+    let wjLeft = [] // 网金剩余人数
+
+    // 抽奖人数按部门分组
+    cloneLeftUsers.forEach(e => {
+      if (e[2] == '科技') {
+        kjLeft.push(e)
+      }
+      if (e[2] == '工会') {
+        ghLeft.push(e)
+      }
+      if (e[2] == '网金') {
+        wjLeft.push(e)
+      }
     })
-    console.log(currentLuckys);
+
+    console.log("剩余人数分组", kjLeft, ghLeft, wjLeft);
+
+    // 按部室抽取幸运观众
+    const ghLucky = _getRandomAndRemoveElements(ghLeft, ghPerCount)
+    const wjLucky = _getRandomAndRemoveElements(wjLeft, wjPerCount)
+    const kjLucky = _getRandomAndRemoveElements(kjLeft, kjPerCount)
+
+    // 汇总幸运观众
+    currentLuckys = [...ghLucky, ...wjLucky, ...kjLucky]
+
+    console.log("幸运观众", currentLuckys);
+
+    basicData.leftUsers = [...ghLeft, ...wjLeft, ...kjLeft]
+
+    console.log("剩余观众", basicData.leftUsers);
+
+
+    // currentLuckys = lotteryRan(leftCount, perCount).map(index => {
+    //   return cloneLeftUsers[index]
+    // })
 
     for (let i = 0; i < perCount; i++) {
 
@@ -883,7 +833,7 @@ function lotteryRan(number, time) {
       arr.push(Random)
     }
   }
-  console.log(arr);
+  console.log('lotteryRan', arr);
   //  function Ran(){
   //           do{
   //              Random=Math.floor(Math.random()*number);
@@ -909,9 +859,9 @@ function saveMock() {
     return;
   }
   //当前选中奖品类型
-  let type = currentPrize.type,
-    //幸运用户建立池子
-    curLucky = basicData.luckyUsers[type] || [];
+  let type = currentPrize.type
+  //幸运用户建立池子
+  let curLucky = basicData.luckyUsers[type] || [];
   //幸运用户入池
   curLucky = curLucky.concat(currentLuckys);
   // 上述合并
