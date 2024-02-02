@@ -295,6 +295,10 @@ function bindEvent() {
         resetMock();
         switchScreen("enter");
         break;
+      case "hidden": {
+        resetCard()
+        break
+      }
       // 抽奖
       case "lottery":
 
@@ -321,13 +325,13 @@ function bindEvent() {
           return
         }
         replaceMusic(currentPrize.enter)
-        mockData.setSecret(currentPrize, basicData)
-        //更新剩余抽奖数目的数据显示
+        // mockData.setSecret(currentPrize, basicData)
+        // 更新剩余抽奖数目的数据显示
         changePrize();
-        resetCard().then(res => {
-          // 抽奖
-          lottery();
-        })
+        // 抽奖
+        lottery();
+
+
         addQipao(`正在抽取[${currentPrize.text}],调整好姿势`);
         break;
       // 重新抽奖
