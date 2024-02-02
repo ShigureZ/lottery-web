@@ -1110,6 +1110,7 @@ function createHighlight() {
  * @Date: 2022-01-19 14:46:05
  */
 function replaceMusic(scenes) {
+  return
   if (nowScenes == scenes) return
   let music = document.querySelector("#music");
   music.src = `./data/${scenes}.m4a`
@@ -1141,26 +1142,26 @@ window.onload = function () {
     });
   }
 
-  musicBox.addEventListener(
-    "click",
-    function (e) {
-      if (music.paused) {
-        music.play().then(
-          () => {
-            stopAnimate = false;
-            animate();
-          },
-          () => {
-            addQipao("背景音乐自动播放失败，请手动播放！");
-          }
-        );
-      } else {
-        music.pause();
-        stopAnimate = true;
-      }
-    },
-    false
-  );
+  // musicBox.addEventListener(
+  //   "click",
+  //   function (e) {
+  //     if (music.paused) {
+  //       music.play().then(
+  //         () => {
+  //           stopAnimate = false;
+  //           animate();
+  //         },
+  //         () => {
+  //           addQipao("背景音乐自动播放失败，请手动播放！");
+  //         }
+  //       );
+  //     } else {
+  //       music.pause();
+  //       stopAnimate = true;
+  //     }
+  //   },
+  //   false
+  // );
 
   setTimeout(function () {
 

@@ -160,8 +160,8 @@ const prizes = [
     type: 1,
     count: 5,
     text: "一等奖 ",
-    title: "",
-    img: "./img/huawei.png",
+    title: "空气炸锅",
+    img: "./img/1.jpg",
     ROTATE_TIME: 10000,
     circle: 8 * 6
 
@@ -170,8 +170,8 @@ const prizes = [
     type: 2,
     count: 10,
     text: "二等奖 ",
-    title: "",
-    img: "./img/mbp.jpg",
+    title: "保温壶",
+    img: "./img/2.jpg",
     ROTATE_TIME: 10000,
     circle: 8 * 3
   },
@@ -179,8 +179,8 @@ const prizes = [
     type: 3,
     count: 15,
     text: "三等奖  ",
-    title: "",
-    img: "./img/ipad.jpg",
+    title: "榨汁机",
+    img: "./img/3.jpg",
     ROTATE_TIME: 10000,
     circle: 8 * 3
   },
@@ -228,6 +228,10 @@ const height = window.innerWidth * .75 * .75
  */
 const EACH_COUNT = [1, 5, 10, 15];
 
+/**
+ * 抽奖分布
+ * [工会，网金，科技]
+ */
 const PRICE_DIS = [[], [1, 1, 3], [0, 4, 6], [2, 5, 8]]
 
 export default { EACH_COUNT, PRICE_DIS, prizes, COMPANY, user, luckyData, leftUsers, awardList, excludeUser, atmosphereGroupCard, background, setSecret, width, height, bgVideo }
