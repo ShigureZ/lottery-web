@@ -328,8 +328,11 @@ function bindEvent() {
         // mockData.setSecret(currentPrize, basicData)
         // 更新剩余抽奖数目的数据显示
         changePrize();
-        // 抽奖
-        lottery();
+        
+        resetCard().then(res => {
+          // 抽奖
+          lottery();
+        });
 
 
         addQipao(`正在抽取[${currentPrize.text}],调整好姿势`);
